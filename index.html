@@ -42,10 +42,16 @@ h1{font-size:34px;margin:0 0 4px;line-height:1.05}
 
 /* layout ------------------------------------------------------------ */
 .cols{display:grid;grid-template-columns:270px 1fr;gap:24px;align-items:stretch}
-@media(max-width:860px){.cols{grid-template-columns:1fr}}
+@media(max-width:860px){
+  .cols{grid-template-columns:1fr}
+  .rail{position:static;min-height:0}
+  .panel{position:static}
+}
 
 /* left panel -------------------------------------------------------- */
-.panel{background:var(--pitch-2);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;min-height:0}
+.rail{position:relative;min-height:460px}
+.panel{position:absolute;inset:0;background:var(--pitch-2);border:1px solid var(--line);
+  border-radius:4px;display:flex;flex-direction:column;min-height:0}
 .controls{padding:12px}
 input[type=search],select{
   width:100%;background:var(--pitch);color:var(--chalk);
@@ -128,7 +134,7 @@ details.method p{margin:8px 0}
 </header>
 
 <div class="cols">
-  <div class="panel">
+  <div class="rail"><div class="panel">
     <div class="controls">
       <label for="q" class="sr-only" style="position:absolute;left:-9999px">Search players</label>
       <input id="q" type="search" placeholder="Search player or club" autocomplete="off">
@@ -136,7 +142,7 @@ details.method p{margin:8px 0}
     </div>
     <ul class="list" id="list" role="listbox" aria-label="Players"></ul>
     <p class="count" id="count"></p>
-  </div>
+  </div></div>
 
   <main id="detail"></main>
 </div>
